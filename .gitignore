@@ -1,0 +1,20 @@
+# Ignore node_modules folder
+**/node_modules/
+
+# Ignore .env files
+**/.env
+
+# Ignore Python cache
+**/__pycache__/
+**/*.py[cod]
+
+# Ignore Django DB (if using SQLite)
+**/db.sqlite3
+
+# Ignore VSCode settings
+.vscode/
+
+# Ignore build output
+.next/
+dist/
+build/
