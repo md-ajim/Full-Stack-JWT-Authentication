@@ -1,0 +1,44 @@
+/* style.css */
+
+/* Custom scroll bar for better look */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+  
+  /* Smooth transitions for links and buttons */
+  a, button {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Custom button hover style */
+  .btn-primary {
+    @apply bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700;
+  }
+  
+  /* Admin table tweaks */
+  .table-custom th {
+    @apply text-left bg-gray-100 text-gray-700 px-4 py-2;
+  }
+  
+  .table-custom td {
+    @apply border-t px-4 py-2;
+  }
+  
+  /* Page container padding */
+  .page-wrapper {
+    @apply max-w-7xl mx-auto px-4;
+  }
+  

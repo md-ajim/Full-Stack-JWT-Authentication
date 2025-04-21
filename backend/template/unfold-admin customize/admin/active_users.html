@@ -1,0 +1,36 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<div class="p-6 bg-white rounded-xl shadow-md">
+  <h1 class="text-2xl font-semibold text-gray-800 mb-4">👤 Active Users</h1>
+
+  <div class="overflow-x-auto">
+    <table class="min-w-full divide-y divide-gray-200 border border-gray-300 rounded-lg">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">ID</th>
+          <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Username</th>
+          <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Email</th>
+          <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">First Name</th>
+          <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Last Name</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        {% for user in users %}
+        <tr class="hover:bg-gray-50">
+          <td class="px-4 py-2 text-sm text-gray-800">{{ user.id }}</td>
+          <td class="px-4 py-2 text-sm text-blue-600 font-medium">{{ user.username }}</td>
+          <td class="px-4 py-2 text-sm text-gray-600">{{ user.email }}</td>
+          <td class="px-4 py-2 text-sm text-gray-600">{{ user.first_name }}</td>
+          <td class="px-4 py-2 text-sm text-gray-600">{{ user.last_name }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5" class="px-4 py-4 text-center text-gray-500">No active users found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
