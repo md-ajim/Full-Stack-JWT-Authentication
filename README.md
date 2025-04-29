@@ -38,10 +38,12 @@ A complete authentication system built with Django REST Framework (Backend) and 
 Full-Stack-JWT-Authentication/
 │
 ├— backend/                # Django Backend
-│   ├— authentication/     # User app (models, views, serializers)
-│   ├— core/               # Project settings, URLs
+│   ├— Authentication/     # User app (models, views, serializers)
+│   ├— settings/           # Project settings, URLs
 │   ├— templates/          # Email templates
 │   ├— static/             # Custom static files
+│   ├— staticfiles/        # Production collectstatic file
+│   ├— mediafiles/         # Upload file (images, text, etc) 
 │   └— manage.py
 │
 └— frontend/               # Next.js Frontend
