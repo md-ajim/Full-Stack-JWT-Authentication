@@ -1,20 +1,35 @@
-# Ignore node_modules folder
-**/node_modules/
+# Node modules
+frontend/node_modules/
 
-# Ignore .env files
-**/.env
+# Build folders
+frontend/.next/
+frontend/.next/cache/
+frontend/out/
+backend/staticfiles/
 
-# Ignore Python cache
-**/__pycache__/
-**/*.py[cod]
+# Env files
+frontend/.env
+frontend/.env.local
+frontend/.env.production
+backend/.env
+backend/.env.local
+backend/.env.production
 
-# Ignore Django DB (if using SQLite)
-**/db.sqlite3
+# Python
+backend/__pycache__/
+*.py[cod]
 
-# Ignore VSCode settings
+# Logs
+*.log
+npm-debug.log*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE/editor folders
 .vscode/
+.idea/
 
-# Ignore build output
-.next/
-dist/
-build/
+# Others
+frontend/.turbo/
