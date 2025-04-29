@@ -117,10 +117,12 @@ GOOGLE_CLIENT_SECRET=your_google_client_secret
 
 | Method | Endpoint                  | Description                        |
 |:------:|----------------------------|------------------------------------|
-| POST   | /api/register/              | User Registration (Email OTP)      |
-| POST   | /api/login/                 | User Login (JWT Token)             |
-| POST   | /api/forgot-password/       | Request OTP for password reset     |
-| POST   | /api/verify-otp/            | Verify OTP                         |
+| POST   | /api/send-otp/              | User Registration (Email OTP)      |
+| POST   | /api/verify-account/        | User Registration Verify OTP       |
+| POST   | /api/login/                 | User Login (JWT access Token)      |
+| POST   | /api/refresh/               | User Login (JWT refresh Token)     |
+| POST   | /api/social-login/          | Social Provider Access Token       |
+| POST   | /api/forget-password-send/  | Request OTP for password reset     |
 | POST   | /api/reset-password/        | Reset Password with OTP            |
 
 ---
