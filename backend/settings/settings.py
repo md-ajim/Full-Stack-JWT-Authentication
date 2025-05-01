@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv()
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-v$64p#mh!heezayy%5_$e0z!dbn3-xi(dpbi0q-og=+b8^9b#z'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -273,9 +275,9 @@ WSGI_APPLICATION = 'settings.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        'NAME': 'Auth',
-        "USER": "root",
-        "PASSWORD": "",
+        'NAME': os.environ.get('DATABASE_NAME'),
+        "USER": os.environ.get('DATABASE_USER'),
+        "PASSWORD": os.environ.get('DATABASE_PASSWORD'),
         "HOST": "localhost",  # Or your MySQL server IP
         "PORT": "3306",
     }
@@ -357,10 +359,8 @@ AUTH_USER_MODEL = 'Authentication.CustomUser'
 
 
 # Google configuration
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = (
-    ""
-)
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ""
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get('GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get('GOOGLE_OAUTH2_SECRET')
 
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
