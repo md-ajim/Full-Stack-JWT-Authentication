@@ -8,6 +8,8 @@ frontend/out/
 backend/staticfiles/
 
 # Env files
+
+.env.local
 frontend/.env
 frontend/.env.local
 frontend/.env.production
