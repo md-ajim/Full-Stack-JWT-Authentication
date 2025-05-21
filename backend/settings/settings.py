@@ -70,6 +70,8 @@ from django.templatetags.static import static
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
+
+
 UNFOLD = {
     "SITE_TITLE": "Admin | ShopPlus",
     "SITE_HEADER": "ShopPlus Admin",
@@ -344,9 +346,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # Simple Mail Tran
 EMAIL_HOST = 'smtp.gmail.com' # configuration Gmail server
 EMAIL_PORT = 587  # TLS encrypted SMTP port
 EMAIL_USE_TLS = True  # Use TLS encryption 
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD =''
-DEFAULT_FROM_EMAIL =''
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL =os.environ.get('DEFAULT_FROM_EMAIL')
 
                  
 

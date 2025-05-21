@@ -26,8 +26,11 @@ from Authentication.models import CustomUser
 User = get_user_model()
 
 import random
-def generate_otp_code():
-    return str(random.randint(100000,999999))
+
+
+
+def  generate_otp_code():
+    return str(random.randint(100000,900000))
 
 
 def store_otp_in_cache(email, otp):
@@ -50,67 +53,62 @@ def  send_activation_mail(username , email , otp):
     recipient_list = [email]
     send_mail(subject, message, from_email,recipient_list)
 
-
-
 class SendOtpViews(CreateAPIView):
     serializer_class = OTPSerializer
-    permission_classes = [AllowAny]
-
+    permission_classes = [ AllowAny]
+    
     def post(self, request):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-
         username = serializer.validated_data.get('username')
         email = serializer.validated_data.get('email')
         otp = generate_otp_code()
-        store_otp_in_cache( email , otp)
-        send_activation_mail(username, email, otp)
+        store_otp_in_cache(email , otp)
+        send_activation_mail( username ,email , otp)
+        return Response({ 'username' : username , 'email' : email , 'otp' : otp}, status=200)
 
-        return Response({ 'message' : 'Successfully send otp code' , 'username': username , 'otp': otp })
-    
 
-class  VerifyOTPViews(generics.GenericAPIView):
+
+class VerifyOTPViews (generics.GenericAPIView):
     serializer_class = CustomUserSerializer
     permission_classes = [AllowAny]
-
+    
     def post(self, request):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-
+    
         username = serializer.validated_data['username']
         email = serializer.validated_data['email']
         password = serializer.validated_data['password']
         otp = serializer.validated_data['otp']
-        
         if verify_otp(email, otp):
-            user = User.objects.filter(username=username, email=email).first()
-            if not user :
-                user = User(username=username, email=email)
+            user = User.objects.filter(username=username , email=email).first()
+            if not user:
+                user = User(username=username , email=email)
                 user.set_password(password)
                 user.is_active = True
-                user.save()
-
-            authenticated_user = authenticate(username=username , password=password)   
-            if not authenticated_user :
-                return Response({'error' : 'user is not authenticate'} , status=401) 
+                user.save() 
             
-            login(request, authenticated_user)
-
-            refresh = RefreshToken.for_user(authenticated_user)
-
+            authenticate_user = authenticate(username=username, password=password) 
+            if not authenticate_user :
+                Response({ 'message': 'user is not authenticate'} , status=401)
+            login(request, authenticate_user)     
+            refresh = RefreshToken.for_user(user)
+             
             response_user = {
-                'id' : authenticated_user.id ,
-                'username' : authenticated_user.username,
-                'email' : authenticated_user.email,
+                'id' : authenticate_user.id,
+                'username' : authenticate_user.username,
+                'email' : authenticate_user.email,
                 'access' : str(refresh.access_token),
                 'refresh' : str(refresh)
             }
             return Response(data=response_user, status=201)
-        else:
-            return  Response({ 'error' : 'otp code is expire or invalid'} , status=401)
-
-
-
+                
+                              
+        else :
+             return  Response({ 'error' : 'otp code is expire or invalid'} , status=401)        
+            
+        
 
 @method_decorator(csrf_exempt, name='dispatch')
 class SocialOAuth2Views( generics.GenericAPIView):

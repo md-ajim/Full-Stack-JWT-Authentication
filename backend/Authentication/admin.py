@@ -15,5 +15,3 @@ class CustomUserAdmin(UnfoldHistoryAdmin):
     list_filter = ("role", "is_active")
     search_fields = ("username", "email")
     ordering = ("-date_joined",)
-
-
