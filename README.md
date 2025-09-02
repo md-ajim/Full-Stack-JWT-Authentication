@@ -134,13 +134,13 @@ GOOGLE_CLIENT_SECRET=your_google_client_secret
 - Configure your Google app credentials in both Django and Next.js `.env` files.
 
 ---
-
+<!-- 
 ## 📸 Screenshots (Optional)
 
 > (Add screenshots of Registration, OTP Verification, Admin Panel, Google Login, etc.)
 
 ---
-
+-->
 ## 📃 License
 
 This project is licensed under the MIT License.
