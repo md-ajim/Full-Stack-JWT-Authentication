@@ -1,3 +1,5 @@
+
+import { signOut } from "next-auth/react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -26,7 +28,7 @@ export default function DropdownMenuWithIcon() {
         <DropdownMenuItem>
           <Settings className="h-4 w-4" /> Settings
         </DropdownMenuItem>
-        <DropdownMenuItem className="text-destructive">
+        <DropdownMenuItem onClick={ () => signOut()} className="text-destructive">
           <LogOut className="h-4 w-4" /> Logout
         </DropdownMenuItem>
       </DropdownMenuContent>

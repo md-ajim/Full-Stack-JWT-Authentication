@@ -28,9 +28,11 @@ User = get_user_model()
 import random
 
 
+def generate_otp_code():
+    return  str(random.randint(100000,900000))
 
-def  generate_otp_code():
-    return str(random.randint(100000,900000))
+
+
 
 
 def store_otp_in_cache(email, otp):
@@ -55,18 +57,16 @@ def  send_activation_mail(username , email , otp):
 
 class SendOtpViews(CreateAPIView):
     serializer_class = OTPSerializer
-    permission_classes = [ AllowAny]
-    
-    def post(self, request):
+
+    def post(self,request):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        username = serializer.validated_data.get('username')
-        email = serializer.validated_data.get('email')
+        username = serializer.validated_data['username']
+        email = serializer.validated_data['email']
         otp = generate_otp_code()
-        store_otp_in_cache(email , otp)
-        send_activation_mail( username ,email , otp)
-        return Response({ 'username' : username , 'email' : email , 'otp' : otp}, status=200)
-
+        store_otp_in_cache(email, otp)
+        send_activation_mail(username,email,otp)
+        return Response ({ 'username' : username , 'email' : email , 'otp' : otp}, status=200)
 
 
 class VerifyOTPViews (generics.GenericAPIView):
@@ -82,7 +82,7 @@ class VerifyOTPViews (generics.GenericAPIView):
         password = serializer.validated_data['password']
         otp = serializer.validated_data['otp']
         if verify_otp(email, otp):
-            user = User.objects.filter(username=username , email=email).first()
+            user = User.objects.filter(username=username, email= email).first()
             if not user:
                 user = User(username=username , email=email)
                 user.set_password(password)
@@ -111,60 +111,61 @@ class VerifyOTPViews (generics.GenericAPIView):
         
 
 @method_decorator(csrf_exempt, name='dispatch')
-class SocialOAuth2Views( generics.GenericAPIView):
+class SocialOAuth2Views(generics.GenericAPIView):
     serializer_class = SocialLogInSerializer
     permission_classes = [AllowAny]
-
+    
     def post(self, request):
-        serializer = self.serializer_class(data=request.data)
+        serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        provider = serializer.validated_data.get('provider')
-        access_token = serializer.validated_data.get('access_token')
-        strategy = load_strategy(request)
-
-        try:
-            backend= load_backend(strategy=strategy,name=provider,redirect_uri=None)
-
-        except MissingBackend:
-            return Response({ 'error' : 'Please provide valid provider'})
+        provider = serializer.validated_data['provider']
+        access_token = serializer.validated_data['access_token']
+        print(provider, 'provider')
+        print(access_token, 'access_token')
+        social_strategy = load_strategy(request)
         
         try:
-            if isinstance(backend, BaseOAuth2):
-                user = backend.do_auth(access_token)
-                if user:             
-                    print(f'{user} is Authenticated')                    
-                else:
-                    print('User is not Authenticated')   
-
-        except AuthForbidden as error:
-              return Response({"error": "Your credentials aren't allowed.", "details": str(error)}, status=status.HTTP_403_FORBIDDEN)
+            backend = load_backend(strategy=social_strategy, name=provider, redirect_uri=None)
+        except MissingBackend :
+            return Response({ 'error' : 'Provide is not valid please provide valid provider' })
         
-        except HTTPError as error:
-             return Response(
-                {"error": {"access_token": "Invalid token", "details": str(error)}},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
+        try : 
+            if isinstance(backend , BaseOAuth2):
+                user = backend.do_auth(access_token=access_token)
+                if user :
+                    print(f'authenticated {user}')
+                else :
+                    return Response({ 'message': 'user is not authenticated'})
         
+        except AuthForbidden as error :
+            return Response({ 'error' : 'Invalid credentials' , 'massage' : str(error)},status=status.HTTP_400_BAD_REQUEST)
+        except HTTPError as error :
+            return Response({ 'error' : 'Access_token is invalid', 'massage' : str(error)},status=status.HTTP_400_BAD_REQUEST)
         except AuthTokenError as error:
-             return Response(
-                {"error": "Invalid credentials", "details": str(error)},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
-
-
-        if user and user.is_active:
-            login( request , user)
+            return Response({ 'error' : 'invalid credentials' , 'massage' : str(error)},status=status.HTTP_400_BAD_REQUEST)
+        
+        if user.is_active:
+            login(request, user)
+            print(user, 'user')
+            
             refresh = RefreshToken.for_user(user)
             response_data = {
-                'id':user.id,
-                "email": user.email,
-                "username": user.username,
-                'refresh': str(refresh),
-                'access': str(refresh.access_token),
-            }           
-
-            return Response(data=response_data, status=status.HTTP_200_OK)
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+                'id' : user.id,
+                'username' : user.username,
+                'email' : user.email,
+                'access_token': str(refresh.access_token),
+                'refresh' : str(refresh)
+            }
+            return Response(data=response_data , status= status.HTTP_200_OK)
+        
+        return Response ({ 'error' : 'User is not active'} , status=status.HTTP_400_BAD_REQUEST)
+            
+               
+                    
+                
+                
+                
+             
 
         
 

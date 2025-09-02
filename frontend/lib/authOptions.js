@@ -1,10 +1,14 @@
 
 
 import axios from "axios";
+
 import CredentialsProvider from "next-auth/providers/credentials";
+
 import { jwtDecode } from "jwt-decode";
 
 import GoogleProvider from "next-auth/providers/google";
+
+
 
 const SIGN_IN_HANDLERS = {
   credentials: async () => {
@@ -13,6 +17,7 @@ const SIGN_IN_HANDLERS = {
 
   google: async (account) => {
     try {
+      console.log(account.access_token, 'google-access-token')
       const response = await axios.post(
         "http://127.0.0.1:8000/api/social-login/",
         {
@@ -20,6 +25,7 @@ const SIGN_IN_HANDLERS = {
           access_token: account.access_token,
         }
       );
+   
       account.meta = response.data;
       return true;
     } catch {
@@ -102,10 +108,10 @@ export const authOptions = {
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
       if (!SIGN_IN_PROVIDERS.includes(account.provider)) return false;
-
+ 
       return SIGN_IN_HANDLERS[account.provider](
-        user,
         account,
+        user,
         profile,
         email,
         credentials
@@ -115,6 +121,7 @@ export const authOptions = {
 
 
     async jwt({ token, user, account }) {
+      console.log(account, 'account -jwt ')
       if (user || account) {
         token.accessToken = user.accessToken || account.meta.access;
         token.refreshToken = user.refreshToken || account.meta.refresh;
@@ -147,6 +154,7 @@ export const authOptions = {
       session.accessToken = token.accessToken;
       session.refreshToken = token.refreshToken;
       session.user = token.user;
+      console.log(session, 'session')
       return session;
     },
   },

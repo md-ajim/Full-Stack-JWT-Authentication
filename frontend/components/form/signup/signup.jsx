@@ -154,7 +154,7 @@ export function SignUpForm(props) {
     <div className={cn("flex flex-col gap-6", className)} {...rest}>
       <Card className="overflow-hidden">
         <CardContent className="grid p-0 ">
-          <form className="p-6 md:p-8">
+          <div className="p-6 md:p-8">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center">
                 <h1 className="text-2xl font-bold">Welcome back</h1>
@@ -327,7 +327,7 @@ export function SignUpForm(props) {
                 </a>
               </div>
             </div>
-          </form>
+          </div>
         </CardContent>
       </Card>
       <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary">
