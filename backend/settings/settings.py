@@ -39,17 +39,17 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [ 
-    
+
     # Django defaults app
     'unfold', # Admin panel customization.
+    'django.contrib.admin',
+    'django.contrib.auth',
     "unfold.contrib.filters",  # optional, if special filters are needed
     "unfold.contrib.forms",  # optional, if special form elements are needed
     "unfold.contrib.inlines",  # optional, if special inlines are needed
     "unfold.contrib.import_export",  # optional, if django-import-export package is used
     "unfold.contrib.guardian",  # optional, if django-guardian package is used
     "unfold.contrib.simple_history",  # optional, if django-simple-history package is used
-    'django.contrib.admin',
-    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
