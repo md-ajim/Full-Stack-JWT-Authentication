@@ -38,17 +38,9 @@ ALLOWED_HOSTS = [
 
 # Application definition
 
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'rest_framework',
-    'rest_framework_simplejwt',
-    'social_django',
-    'corsheaders', #
-    'Authentication', 
+INSTALLED_APPS = [ 
+    
+    # Django defaults app
     'unfold', # Admin panel customization.
     "unfold.contrib.filters",  # optional, if special filters are needed
     "unfold.contrib.forms",  # optional, if special form elements are needed
@@ -56,8 +48,21 @@ INSTALLED_APPS = [
     "unfold.contrib.import_export",  # optional, if django-import-export package is used
     "unfold.contrib.guardian",  # optional, if django-guardian package is used
     "unfold.contrib.simple_history",  # optional, if django-simple-history package is used
+    'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+     # Third-party module
     'simple_history',
+    'rest_framework',
+    'rest_framework_simplejwt',
+    'social_django',
+    'corsheaders', 
+    'Authentication', 
+   
     
 
 
