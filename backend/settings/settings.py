@@ -289,11 +289,11 @@ WSGI_APPLICATION = 'settings.wsgi.application'
 
 DATABASES={
     'default' :{
-     'ENGINE': 'django.db.backend.'
-     ''
-
+     'ENGINE': 'django.db.backends.sqlite3',
+     'NAME': BASE_DIR / 'my_custom_database.sqlite3',
     }
 }
+
 
 
 
