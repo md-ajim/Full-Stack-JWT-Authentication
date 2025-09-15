@@ -86,7 +86,7 @@ export function SignUpForm(props) {
       setSubmitDisabled(false);
       try {
         const response = await axios.post(
-          `http://127.0.0.1:8000/api/verify-account/`,
+          `https://full-stack-jwt-authentication.onrender.com/api/verify-account/`,
           {
             username: SignUpFormInput.username,
             email: SignUpFormInput.email,
@@ -123,7 +123,7 @@ export function SignUpForm(props) {
     } else {
       try {
         const response = await axios.post(
-          `http://127.0.0.1:8000/api/send-otp/`,
+          `https://full-stack-jwt-authentication.onrender.com/api/send-otp/`,
           {
             username: SignUpFormInput.username,
             email: SignUpFormInput.email,
@@ -320,7 +320,7 @@ export function SignUpForm(props) {
               <div className="text-center text-sm">
                 Already have an account?{" "}
                 <a
-                  href="http://localhost:3000/form/login"
+                  href="https://full-stack-jwt-authentication.onrender.com/form/login"
                   className="underline underline-offset-4"
                 >
                   Login
