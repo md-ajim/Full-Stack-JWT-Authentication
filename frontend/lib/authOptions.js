@@ -19,7 +19,7 @@ const SIGN_IN_HANDLERS = {
     try {
       console.log(account.access_token, 'google-access-token')
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/social-login/",
+        "https://full-stack-jwt-authentication.onrender.com/api/social-login/",
         {
           provider: "google-oauth2",
           access_token: account.access_token,
@@ -39,7 +39,7 @@ const SIGN_IN_PROVIDERS = Object.keys(SIGN_IN_HANDLERS);
 
 async function refreshAccessToken(refreshToken) {
   try {
-    const response = await axios.post(`http://127.0.0.1:8000/api/refresh/`, {
+    const response = await axios.post(`https://full-stack-jwt-authentication.onrender.com/api/refresh/`, {
       refresh: refreshToken,
     });
     const { access, refresh } = response.data;
@@ -76,7 +76,7 @@ export const authOptions = {
       async authorize(credentials) {
         try {
           const response = await axios.post(
-            "http://127.0.0.1:8000/api/login/",
+            "https://full-stack-jwt-authentication.onrender.com/api/login/",
             {
               username: credentials.username,
               password: credentials.password,
