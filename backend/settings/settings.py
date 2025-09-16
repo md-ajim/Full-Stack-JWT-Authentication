@@ -31,7 +31,8 @@ DEBUG = os.environ.get('DEBUG')
 ALLOWED_HOSTS = [
     "full-stack-jwt-authentication.onrender.com",
     "http://localhost:3000/",
-    "https://full-stack-jwt-atuthentication.vercel.app/"
+    "https://full-stack-jwt-atuthentication.vercel.app/",
+    "https://full-stack-jwt-atuthentication.vercel.app"
 ]
 
 
