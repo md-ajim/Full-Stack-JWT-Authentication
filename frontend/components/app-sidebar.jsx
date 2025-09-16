@@ -57,7 +57,7 @@ export function AppSidebar() {
     setLoading(true);
 
     axios
-      .get(`http://127.0.0.1:8000/api/users/${session?.user?.id}/`, {
+      .get(`https://full-stack-jwt-authentication.onrender.com/api/users/${session?.user?.id}/`, {
         //  headers: {
         //    Authorization: `Bearer ${session?.accessToken}`,
         //  }

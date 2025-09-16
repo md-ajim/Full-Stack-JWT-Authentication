@@ -18,6 +18,7 @@ import {
   InputOTPSeparator,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
+import Link from "next/link";
 
 export function SignUpForm(props) {
   const { className, ...rest } = props;
@@ -319,12 +320,12 @@ export function SignUpForm(props) {
               </div>
               <div className="text-center text-sm">
                 Already have an account?{" "}
-                <a
-                  href="https://full-stack-jwt-atuthentication.vercel.app/form/login"
+                <Link
+                  href="/form/login"
                   className="underline underline-offset-4"
                 >
                   Login
-                </a>
+                </Link>
               </div>
             </div>
           </div>
