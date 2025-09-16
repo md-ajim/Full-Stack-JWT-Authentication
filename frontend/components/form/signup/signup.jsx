@@ -320,7 +320,7 @@ export function SignUpForm(props) {
               <div className="text-center text-sm">
                 Already have an account?{" "}
                 <a
-                  href="https://full-stack-jwt-authentication.onrender.com/form/login"
+                  href="https://full-stack-jwt-atuthentication.vercel.app/form/login"
                   className="underline underline-offset-4"
                 >
                   Login
