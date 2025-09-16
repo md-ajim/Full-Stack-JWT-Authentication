@@ -1,4 +1,5 @@
 import { GalleryVerticalEnd } from "lucide-react"
+import Image from "next/image"
 import  {LoginForm }from '../../../components/form/login/login'
 
 export default function LoginPage() {
@@ -20,9 +21,9 @@ export default function LoginPage() {
         </div>
       </div>
       <div className="relative hidden bg-muted lg:block">
-        <img
-          src="/1.jpg"
-          alt="Image"
+        <Image
+          src="/images/code.jpg"
+          alt="image"
           width={0}
           height={0}
           layout="responsive"
