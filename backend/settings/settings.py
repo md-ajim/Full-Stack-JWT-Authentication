@@ -30,7 +30,7 @@ DEBUG = os.environ.get('DEBUG')
 
 ALLOWED_HOSTS = [
     "full-stack-jwt-authentication.onrender.com",
-    "localhost",
+    "http://localhost:3000/",
     "127.0.0.1"
 ]
 
