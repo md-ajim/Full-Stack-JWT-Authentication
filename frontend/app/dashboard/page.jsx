@@ -200,7 +200,7 @@ export default function DashboardPage() {
                             Username
                           </Label>
                           <Input
-                            required
+                    
                             onChange={(e) =>
                               setInputData({
                                 ...inputData,
