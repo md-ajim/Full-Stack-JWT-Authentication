@@ -27,7 +27,7 @@ export default function LoginPage() {
           width={0}
           height={0}
           layout="responsive"
-          className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+          className="absolute inset-0 h-full w-full object-cover  dark:brightness-[0.2] dark:grayscale"
         />
       </div>
     </div>
