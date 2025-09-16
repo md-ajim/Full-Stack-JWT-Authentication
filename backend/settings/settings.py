@@ -29,9 +29,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG')
 
 ALLOWED_HOSTS = [
+    "https://full-stack-jwt-atuthentication.vercel.app/",
     "full-stack-jwt-authentication.onrender.com",
     "http://localhost:3000/",
-    "https://full-stack-jwt-atuthentication.vercel.app/",
     "https://full-stack-jwt-atuthentication.vercel.app"
 ]
 
