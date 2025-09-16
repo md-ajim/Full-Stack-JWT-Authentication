@@ -79,7 +79,7 @@ export default function DashboardPage() {
     }
     try {
       const response = await axios.patch(
-        `https://full-stack-jwt-authentication.onrender.com/${session?.user?.id}/`,
+        `https://full-stack-jwt-authentication.onrender.com/api/users/${session?.user?.id}/`,
         formData
         // {
         //   headers: {
