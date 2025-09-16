@@ -57,6 +57,7 @@ def  send_activation_mail(username , email , otp):
 
 class SendOtpViews(CreateAPIView):
     serializer_class = OTPSerializer
+    permission_classes = [AllowAny]
 
     def post(self,request):
         serializer = self.get_serializer(data=request.data)
