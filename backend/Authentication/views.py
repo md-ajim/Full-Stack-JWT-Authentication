@@ -34,7 +34,6 @@ def generate_otp_code():
 
 
 
-
 def store_otp_in_cache(email, otp):
     cache_key = f"otp_{email}"
     cache.set(cache_key, otp, timeout=600)  # Timeout in seconds (10 minutes)
@@ -111,6 +110,7 @@ class VerifyOTPViews (generics.GenericAPIView):
             
         
 
+
 @method_decorator(csrf_exempt, name='dispatch')
 class SocialOAuth2Views(generics.GenericAPIView):
     serializer_class = SocialLogInSerializer
@@ -121,8 +121,6 @@ class SocialOAuth2Views(generics.GenericAPIView):
         serializer.is_valid(raise_exception=True)
         provider = serializer.validated_data['provider']
         access_token = serializer.validated_data['access_token']
-        print(provider, 'provider')
-        print(access_token, 'access_token')
         social_strategy = load_strategy(request)
         
         try:
@@ -145,33 +143,25 @@ class SocialOAuth2Views(generics.GenericAPIView):
         except AuthTokenError as error:
             return Response({ 'error' : 'invalid credentials' , 'massage' : str(error)},status=status.HTTP_400_BAD_REQUEST)
         
-        if user.is_active:
+        if user and user.is_active:
             login(request, user)
-            print(user, 'user')
-            
             refresh = RefreshToken.for_user(user)
             response_data = {
                 'id' : user.id,
                 'username' : user.username,
                 'email' : user.email,
-                'access_token': str(refresh.access_token),
+                'access': str(refresh.access_token),
                 'refresh' : str(refresh)
             }
+            print(response_data, 'response data')
             return Response(data=response_data , status= status.HTTP_200_OK)
         
         return Response ({ 'error' : 'User is not active'} , status=status.HTTP_400_BAD_REQUEST)
             
                
-                    
                 
                 
-                
-             
-
-        
-
-
-
+            
 class UserSeriaLizersViews( ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = UserSeriaLizers

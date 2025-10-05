@@ -198,7 +198,7 @@ const SIGN_IN_HANDLERS = {
     try {
       console.log(account.access_token, 'google-access-token')
       const response = await axios.post(
-        "http://127.0.0.1:8000/social-login/",
+        "http://127.0.0.1:8000/api/social-login/",
         {
           provider: "google-oauth2",
           access_token: account.access_token,
@@ -207,7 +207,7 @@ const SIGN_IN_HANDLERS = {
    
       account.meta = response.data;
       return true;
-    } catch {
+    } catch (error) {
       console.error("Google Sign-In Error:", error);
       return false;
     }
@@ -218,7 +218,8 @@ const SIGN_IN_PROVIDERS = Object.keys(SIGN_IN_HANDLERS);
 
 async function refreshAccessToken(refreshToken) {
   try {
-    const response = await axios.post(`http://127.0.0.1:8000/api/token/refresh/`, {
+    const response = await axios.post(`http://127.0.0.1:8000/
+      api/refresh/`, {
       refresh: refreshToken,
     });
     const { access, refresh } = response.data;
@@ -336,9 +337,6 @@ export const authOptions = {
       console.log(session, 'session')
       return session;
     },
-
-
-
     
   },
   secret: process.env.NEXTAUTH_SECRET,
