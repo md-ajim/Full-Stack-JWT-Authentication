@@ -370,13 +370,9 @@ DEFAULT_FROM_EMAIL =os.environ.get('DEFAULT_FROM_EMAIL')
                  
 
 CORS_ALLOWED_ORIGINS =[
-  "https://full-stack-jwt-atuthentication.vercel.app/",
-  "http://localhost:3000/",
-  "https://full-stack-jwt-atuthentication.vercel.app",
-  'https://127.0.0.1',
-  '127.0.0.1:8000',  # Add this
-  '127.0.0.1',
-  'localhost',
+  'https://full-stack-jwt-authentication.vercel.app',
+  "http://localhost:3000",
+
 ]
 
 
