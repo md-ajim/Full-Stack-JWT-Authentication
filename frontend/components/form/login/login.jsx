@@ -6,10 +6,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Toaster, toast } from "sonner";
-import { signOut, signIn } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { Loader2 } from "lucide-react";
-
-import axios from "axios";
 import Link from "next/link";
 
 export function LoginForm(props) {

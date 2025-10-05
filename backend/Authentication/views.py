@@ -220,12 +220,7 @@ class OTPVerifySerializersViews(generics.GenericAPIView):
 
 
 
-        
 
-# @staff_member_required
-# def active_users_views(request):
-#     users = CustomUser.objects.filter(is_active=True)
-#     return render(request,'admin/active_users.html',{ 'users': users})
 
    
        
