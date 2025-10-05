@@ -25,10 +25,10 @@ const SIGN_IN_HANDLERS = {
           access_token: account.access_token,
         }
       );
-   
+
       account.meta = response.data;
       return true;
-    } catch {
+    } catch (error) {
       console.error("Google Sign-In Error:", error);
       return false;
     }
@@ -65,6 +65,7 @@ export const authOptions = {
         prompt: "consent",
         access_type: "offline",
         response_type: "code",
+        scope: "openid email profile", // Explicitly define scope
       },
     }),
     CredentialsProvider({
@@ -108,7 +109,7 @@ export const authOptions = {
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
       if (!SIGN_IN_PROVIDERS.includes(account.provider)) return false;
- 
+
       return SIGN_IN_HANDLERS[account.provider](
         account,
         user,
@@ -118,6 +119,15 @@ export const authOptions = {
       );
     },
 
+    async redirect({ url, baseUrl }) {
+      if (url.startsWith(baseUrl)) {
+        return url
+      }
+      if (url.includes('/api/auth')) {
+        return `${baseUrl}/dashboard`;
+      }
+      return `${baseUrl}/dashboard`;
+    },
 
 
     async jwt({ token, user, account }) {

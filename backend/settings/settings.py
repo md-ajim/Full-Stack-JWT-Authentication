@@ -28,12 +28,6 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG')
 
-ALLOWED_HOSTS = [
-    "https://full-stack-jwt-atuthentication.vercel.app/",
-    "full-stack-jwt-authentication.onrender.com",
-    "http://localhost:3000/",
-    "https://full-stack-jwt-atuthentication.vercel.app"
-]
 
 
 
@@ -378,7 +372,25 @@ DEFAULT_FROM_EMAIL =os.environ.get('DEFAULT_FROM_EMAIL')
 CORS_ALLOWED_ORIGINS =[
     'http://localhost:3000',
     "http://192.168.0.100:3000",
+    'https://full-stack-jwt-atuthentication.vercel.app',
+
+
+  
 ]
+
+ALLOWED_HOSTS = [
+    "https://full-stack-jwt-atuthentication.vercel.app/",
+    "full-stack-jwt-authentication.onrender.com",
+    "http://localhost:3000/",
+    "https://full-stack-jwt-atuthentication.vercel.app",
+    'https://127.0.0.1',
+    '127.0.0.1:8000',  # Add this
+    '127.0.0.1',
+    'localhost',
+ 
+   
+]
+
 
 AUTH_USER_MODEL = 'Authentication.CustomUser'
 
