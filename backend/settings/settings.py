@@ -187,7 +187,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # যদি তোমার custom static ফোল্ডার থাকে
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')    # এটা production এর জন্য collectstatic ফাইল রাখবে
