@@ -36,7 +36,7 @@ const SIGN_IN_PROVIDERS = Object.keys(SIGN_IN_HANDLERS);
 
 async function refreshAccessToken(refreshToken) {
   try {
-    const response = await axios.post(`https://full-stack-jwt-authentication.onrender.com/api/refresh/`, {
+    const response = await axios.post(`/api/refresh/`, {
       refresh: refreshToken,
     });
     const { access, refresh } = response.data;
