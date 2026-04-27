@@ -26,8 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG')
+# DEBUG = os.environ.get('DEBUG')
+DEBUG = False
 
+import dj_database_url
 
 
 
@@ -62,166 +64,6 @@ INSTALLED_APPS = [
 
 
 ]
-
-
-# from .unfold_callbacks import (
-#     environment_callback,
-#     environment_title_prefix_callback,
-#     dashboard_callback,
-
-# )
-
-# from django.templatetags.static import static
-# from django.urls import reverse_lazy
-# from django.utils.translation import gettext_lazy as _
-
-
-
-# UNFOLD = {
-#     "SITE_TITLE": "Admin | ShopPlus",
-#     "SITE_HEADER": "ShopPlus Admin",
-#     "SITE_SUBHEADER": "Manage Users and Access",
-#     "SITE_URL": "/",
-#     "SITE_ICON": {
-#         "light": lambda request: static("icons/icon-light.svg"),
-#         "dark": lambda request: static("icons/icon-dark.svg"),
-#     },
-#     "SITE_LOGO": {
-#         "light": lambda request: static("logos/logo-light.PNG"),
-#         "dark": lambda request: static("logos/logo-dark.svg"),
-#     },
-#     "SITE_SYMBOL": "person",  # Material icon
-#     "SITE_FAVICONS": [
-#         {
-#             "rel": "icon",
-#             "sizes": "32x32",
-#             "type": "image/svg+xml",
-#             "href": lambda request: static("favicons/favicon.svg"),
-#         },
-#     ],
-
-#      "SITE_DROPDOWN": [
-#         {
-#             "icon": "diamond",
-#             "title": _("Auth"),
-#             "link": "http://localhost:3000/",
-#         },
-#         # ...
-#     ],
-
-#       "SITE_SYMBOL": "speed",  # symbol from icon set
-    
-#     "SHOW_HISTORY": True,
-#     "SHOW_VIEW_ON_SITE": True,
-#     "SHOW_BACK_BUTTON": True,
-#     "ENVIRONMENT": environment_callback,
-#     "ENVIRONMENT_TITLE_PREFIX": environment_title_prefix_callback,
-#     "DASHBOARD_CALLBACK": dashboard_callback,
-#     "THEME": True,
-#     "LOGIN": {
-#         "image": lambda request: static("images/login-bg.jpg"),
-#         "redirect_after": lambda request: reverse_lazy("admin:Authentication_customuser_changelist"),
-#     },
-#     "STYLES": [
-#         lambda request: static("css/style.css"),
-#     ],
-#     "SCRIPTS": [
-#         lambda request: static("js/script.js"),
-#     ],
-#     "BORDER_RADIUS": "8px",
-#     "COLORS": {
-#         "base": {
-#             "50": "249 250 251",
-#             "100": "243 244 246",
-#             "200": "229 231 235",
-#             "300": "209 213 219",
-#             "400": "156 163 175",
-#             "500": "107 114 128",
-#             "600": "75 85 99",
-#             "700": "55 65 81",
-#             "800": "31 41 55",
-#             "900": "17 24 39",
-#             "950": "3 7 18",
-#         },
-#         "primary": {
-#             "50": "240 249 255",
-#             "100": "224 242 254",
-#             "200": "186 230 253",
-#             "300": "125 211 252",
-#             "400": "56 189 248",
-#             "500": "14 165 233",
-#             "600": "2 132 199",
-#             "700": "3 105 161",
-#             "800": "7 89 133",
-#             "900": "12 74 110",
-#             "950": "8 47 73",
-#         },
-#         "font": {
-#             "subtle-light": "var(--color-base-500)",
-#             "subtle-dark": "var(--color-base-400)",
-#             "default-light": "var(--color-base-600)",
-#             "default-dark": "var(--color-base-300)",
-#             "important-light": "var(--color-base-900)",
-#             "important-dark": "var(--color-base-100)",
-#         },
-#     },
-#     "EXTENSIONS": {
-#         "modeltranslation": {
-#             "flags": {
-#                 "en": "🇬🇧",
-#                 "bn": "🇧🇩",
-#             },
-#         },
-#     },
-#     "SIDEBAR": {
-#         "show_search": True,
-#         "show_all_applications": True,
-#         "navigation": [
-#             {
-#                 "title": _("User Management"),
-#                 "separator": True,
-#                 "collapsible": True,
-#                 "items": [
-#                     {
-#                         "title": _("Dashboard"),
-#                         "icon": "dashboard",
-#                         "link": reverse_lazy("admin:index"),
-#                         # "badge": "sample_app.badge_callback",
-#                         "permission": lambda request: request.user.is_superuser,
-#                     },
-#                     {
-#                         "title": _("Users"),
-#                         "icon": "people",
-#                         "link": reverse_lazy("admin:Authentication_customuser_changelist"),
-#                         "permission": lambda request: request.user.is_staff,
-#                     },
-#                 ],
-#             },
-#         ],
-#     },
-#     "TABS": [
-#         {
-#             "models": [
-#                 "authentication.customuser",
-#             ],
-#             "items": [
-#                 {
-#                     "title": _("All Users"),
-#                     "link": reverse_lazy("admin:Authentication_customuser_changelist"),
-#                     "permission": lambda request: request.user.is_staff,
-#                 },
-
-#             #     {
-#             #     "title": _("Active Users"),
-#             #     "link": reverse_lazy("active_users_view"),  # কোন admin namespace নেই এখানে
-#             #     "permission": lambda request: request.user.is_staff,
-#             # },
-
-
-#             ],
-#         },
-#     ],
-# }
 
 
 
@@ -286,21 +128,21 @@ WSGI_APPLICATION = 'settings.wsgi.application'
 #         'NAME': os.environ.get('DATABASE_NAME'),
 #         "USER": os.environ.get('DATABASE_USER'),
 #         "PASSWORD": os.environ.get('DATABASE_PASSWORD'),
-#         "HOST": "localhost",  # Or your MySQL server IP
+#         "HOST": "localhost", 
 #         "PORT": "3306",
 #     }
 # }
 
 
 
-DATABASES={
-    'default' :{
-     'ENGINE': 'django.db.backends.sqlite3',
-     'NAME': BASE_DIR / 'my_custom_database.sqlite3',
-    }
+
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL'),
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
-
-
 
 
 
@@ -376,7 +218,7 @@ CORS_ALLOWED_ORIGINS =[
 ]
 
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
 
 
 
