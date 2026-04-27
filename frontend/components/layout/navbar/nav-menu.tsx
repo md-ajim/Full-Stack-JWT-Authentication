@@ -17,14 +17,14 @@ import {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink asChild>
-            <Link href="http://localhost:3000/dashboard">Dashboard</Link>
+            <Link href="/dashboard">Dashboard</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
 
 
         <NavigationMenuItem>
           <NavigationMenuLink asChild>
-            <Link href="http://127.0.0.1:8000/admin/">Admin</Link>
+            <Link href="/admin/">Admin</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
 
