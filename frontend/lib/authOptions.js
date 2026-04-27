@@ -16,7 +16,7 @@ const SIGN_IN_HANDLERS = {
     try {
       console.log(account.access_token, 'google-access-token')
       const response = await axios.post(
-        "https://full-stack-jwt-authentication.onrender.com/api/social-login/",
+        "/api/social-login/",
         {
           provider: "google-oauth2",
           access_token: account.access_token,
