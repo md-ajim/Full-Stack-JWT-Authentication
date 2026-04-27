@@ -74,7 +74,7 @@ export default function ForgetPassword() {
     if (sendOTP) {
       try {
         const response = axios.post(
-          "https://full-stack-jwt-authentication.onrender.com/api/reset-password/",
+          "/api/reset-password/",
           {
             email: forgetPasswordInput.email,
             otp: forgetPasswordInput.otp,
@@ -114,7 +114,7 @@ export default function ForgetPassword() {
     } else {
       try {
         const response = await axios.post(
-          `https://full-stack-jwt-authentication.onrender.com/api/forget-password-send/`,
+          "/api/forget-password-send/",
           {
             email: forgetPasswordInput.email,
           }
