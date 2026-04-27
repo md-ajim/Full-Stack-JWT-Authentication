@@ -1,6 +1,4 @@
 "use client";
-
-
 import { useSession } from "next-auth/react";
 import Navbar02Page from "@/components/layout/navbar/navbar";
 import Footer04Page from "@/components/layout/footer-04/footer-04";
