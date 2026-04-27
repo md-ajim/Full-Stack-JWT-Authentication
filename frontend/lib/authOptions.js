@@ -89,7 +89,7 @@ export const authOptions = {
     },
 
     async jwt({ token, user, account }) {
-      // প্রাথমিক লগইন
+
       if (user || account) {
         const access = user?.accessToken || account?.meta?.access;
         const refresh = user?.refreshToken || account?.meta?.refresh;
