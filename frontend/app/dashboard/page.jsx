@@ -45,7 +45,7 @@ export default function DashboardPage() {
       setLoading(true);
       try {
         const response = await axios.get(
-          `https://full-stack-jwt-authentication.onrender.com/api/users/${session?.user?.id}/`
+          `/api/users/${session?.user?.id}/`
         );
         const data = response.data;
         if (data) {
@@ -79,7 +79,7 @@ export default function DashboardPage() {
     }
     try {
       const response = await axios.patch(
-        `https://full-stack-jwt-authentication.onrender.com/api/users/${session?.user?.id}/`,
+        `/api/users/${session?.user?.id}/`,
         formData
         // {
         //   headers: {
