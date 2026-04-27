@@ -14,9 +14,6 @@ from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()
 import os
-import pymysql
-pymysql.install_as_MySQLdb()
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -67,12 +64,12 @@ INSTALLED_APPS = [
 ]
 
 
-from .unfold_callbacks import (
-    environment_callback,
-    environment_title_prefix_callback,
-    dashboard_callback,
+# from .unfold_callbacks import (
+#     environment_callback,
+#     environment_title_prefix_callback,
+#     dashboard_callback,
 
-)
+# )
 
 # from django.templatetags.static import static
 # from django.urls import reverse_lazy
@@ -214,7 +211,11 @@ from .unfold_callbacks import (
 #                     "permission": lambda request: request.user.is_staff,
 #                 },
 
-        
+#             #     {
+#             #     "title": _("Active Users"),
+#             #     "link": reverse_lazy("active_users_view"),  # কোন admin namespace নেই এখানে
+#             #     "permission": lambda request: request.user.is_staff,
+#             # },
 
 
 #             ],
@@ -223,82 +224,6 @@ from .unfold_callbacks import (
 # }
 
 
-
-from django.templatetags.static import static
-from django.urls import reverse_lazy
-from django.utils.translation import gettext_lazy as _
-
-# environment callback গুলো যেন আগেই ডিফাইন করা থাকে তা নিশ্চিত করুন
-def environment_callback(request):
-    return "development" # বা আপনার লজিক
-
-def environment_title_prefix_callback(request):
-    return "Dev"
-
-def dashboard_callback(request, context):
-    return context
-
-UNFOLD = {
-    "SITE_TITLE": "Admin | ShopPlus",
-    "SITE_HEADER": "ShopPlus Admin",
-    "SITE_SUBHEADER": "Manage Users and Access",
-    "SITE_URL": "/",
-    # ল্যাম্বডা ফাংশন গুলো এভাবেই রাখুন, কারণ এগুলো রান-টাইমে কল হয়
-    "SITE_ICON": {
-        "light": lambda request: static("icons/icon-light.svg"),
-        "dark": lambda request: static("icons/icon-dark.svg"),
-    },
-    "SITE_LOGO": {
-        "light": lambda request: static("logos/logo-light.PNG"),
-        "dark": lambda request: static("logos/logo-dark.svg"),
-    },
-    # ... (অন্যান্য সেটিংস)
-    "SIDEBAR": {
-        "show_search": True,
-        "show_all_applications": True,
-        "navigation": [
-            {
-                "title": _("User Management"),
-                "separator": True,
-                "collapsible": True,
-                "items": [
-                    {
-                        "title": _("Dashboard"),
-                        "icon": "dashboard",
-                        # এখানে নিশ্চিত করুন reverse_lazy ই আছে
-                        "link": reverse_lazy("admin:index"), 
-                        "permission": lambda request: request.user.is_superuser,
-                    },
-                    {
-                        "title": _("Users"),
-                        "icon": "people",
-                        "link": reverse_lazy("admin:Authentication_customuser_changelist"),
-                        "permission": lambda request: request.user.is_staff,
-                    },
-                ],
-            },
-        ],
-    },
-     "TABS": [
-        {
-            "models": [
-                "authentication.customuser",
-            ],
-            "items": [
-                {
-                    "title": _("All Users"),
-                    "link": reverse_lazy("admin:Authentication_customuser_changelist"),
-                    "permission": lambda request: request.user.is_staff,
-                },
-
-        
-
-
-            ],
-        },
-    ],
-  
-}
 
 
 
