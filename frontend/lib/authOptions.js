@@ -10,7 +10,7 @@ const SIGN_IN_HANDLERS = {
 
   google: async (account) => {
     try {
-      const response = await axios.post(`${API_URL}/api/social-login/`, {
+      const response = await axios.post(`${API_URL}/srv/social-login/`, {
         provider: "google-oauth2",
         access_token: account.access_token,
       });
@@ -27,7 +27,7 @@ const SIGN_IN_PROVIDERS = Object.keys(SIGN_IN_HANDLERS);
 
 async function refreshAccessToken(refreshToken) {
   try {
-    const response = await axios.post(`${API_URL}/api/token/refresh/`, {
+    const response = await axios.post(`${API_URL}/srv/token/refresh/`, {
       refresh: refreshToken,
     });
     return response.data; // access and refresh
@@ -58,7 +58,7 @@ export const authOptions = {
       },
       async authorize(credentials) {
         try {
-          const response = await axios.post(`${API_URL}/api/login/`, {
+          const response = await axios.post(`${API_URL}/srv/login/`, {
             username: credentials.username,
             password: credentials.password,
           });
