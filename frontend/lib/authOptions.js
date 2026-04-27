@@ -74,7 +74,7 @@ export const authOptions = {
       async authorize(credentials) {
         try {
           const response = await axios.post(
-            "https://full-stack-jwt-authentication.onrender.com/api/login/",
+            "/api/login/",
             {
               username: credentials.username,
               password: credentials.password,
