@@ -7,7 +7,7 @@
         },
         "backend": {
             "entrypoint": "backend",
-            "routePrefix": "",
+            "routePrefix": "/",
             "framework": "django"
         }
 

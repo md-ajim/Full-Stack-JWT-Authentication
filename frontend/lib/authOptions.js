@@ -107,13 +107,12 @@ export const authOptions = {
         };
       }
 
-      // টোকেন এক্সপায়ার হয়েছে কিনা চেক (Corrected Date.now)
+   
       if (Date.now() < (token.exp * 1000) - 60000) {
         return token;
       }
 
-      // টোকেন রিফ্রেশ করা
-      return await refreshAccessToken(token.refreshToken);
+       return await refreshAccessToken(token.refreshToken);
     },
 
     async session({ session, token }) {
