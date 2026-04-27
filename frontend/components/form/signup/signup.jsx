@@ -87,7 +87,7 @@ export function SignUpForm(props) {
       setSubmitDisabled(false);
       try {
         const response = await axios.post(
-          `https://full-stack-jwt-authentication.onrender.com/api/verify-account/`,
+          `/api/verify-account/`,
           {
             username: SignUpFormInput.username,
             email: SignUpFormInput.email,
@@ -124,7 +124,7 @@ export function SignUpForm(props) {
     } else {
       try {
         const response = await axios.post(
-          `https://full-stack-jwt-authentication.onrender.com/api/send-otp/`,
+          "/api/send-otp/",
           {
             username: SignUpFormInput.username,
             email: SignUpFormInput.email,
