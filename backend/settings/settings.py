@@ -188,10 +188,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # যদি তোমার custom static ফোল্ডার থাকে
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')    # এটা production এর জন্য collectstatic ফাইল রাখবে
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')  
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
