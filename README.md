@@ -149,7 +149,7 @@ This project is licensed under the MIT License.
 
 ## 👨‍💼 Author
 
-**MD AJIM** — [ajim-dev.vercel.app/](#)  
+**MD AJIM** — [mdajim.work](#)  
 GitHub: [@md-ajim](#)
 
 ---
